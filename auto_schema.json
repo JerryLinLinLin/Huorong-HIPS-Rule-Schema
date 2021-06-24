@@ -1,0 +1,105 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "title": "Huorong HIPS Verdict Cache Schema",
+    "description": "This is the schema for Huorong Internet Security HIPS Verdict Cache",
+    "type": "object",
+    "properties": {
+        "ver": {
+            "type": "string",
+            "description": "must be '5.0'",
+            "const": "5.0"
+        },
+        "tag": {
+            "type": "string",
+            "description": "must be 'hipsuser_auto'",
+            "default": "hipsuser_auto"
+        },
+        "data": {
+            "type": "object",
+            "description": "rule",
+            "patternProperties": {
+                "^.*$": {
+                    "type": "array",
+                    "description": "target path",
+                    "items": {
+                        "type": "object",
+                        "description": "target",
+                        "properties": {
+                            "res_path": {
+                                "type": "string",
+                                "description": "target path, wildcard support '*'(any), '>'(any except dir)",
+                                "default": "*"
+                            },
+                            "montype": {
+                                "type": "integer",
+                                "description": "0:app_defense, 1:file_defense, 2:reg_defense",
+                                "enum": [
+                                    0,
+                                    1,
+                                    2
+                                ],
+                                "default": 0
+                            },
+                            "action_type": {
+                                "type": "integer",
+                                "description": "monitered events: 1:Create, 2:Read, 4:Modify, 8:Delete, 16:Execute(app_def)",
+                                "minimum": 1,
+                                "maximum": 16,
+                                "default": 16
+                            },
+                            "treatment": {
+                                "type": "integer",
+                                "description": "action when triggered, 0:allow, 3:block",
+                                "enum": [
+                                    0,
+                                    3
+                                ],
+                                "default": 1
+                            }
+                        },
+                        "required": [
+                            "montype",
+                            "action_type",
+                            "res_path",
+                            "treatment"
+                        ],
+                        "defaultSnippets": [
+                            {
+                                "label": "app_defense",
+                                "description": "app_defense template",
+                                "body": {
+                                    "res_path": "$1",
+                                    "montype": 0,
+                                    "action_type": 16,
+                                    "treatment": 0
+                                }
+                            },
+                            {
+                                "label": "file_defense",
+                                "description": "file_defense template",
+                                "body": {
+                                    "res_path": "$1",
+                                    "montype": 1,
+                                    "action_type": 1,
+                                    "treatment": 0
+                                }
+                            },
+                            {
+                                "label": "reg_defense",
+                                "description": "reg_defense template",
+                                "body": {
+                                    "res_path": "$1",
+                                    "montype": 2,
+                                    "action_type": 1,
+                                    "treatment": 0
+                                }
+                            }
+                        ]
+
+                    }
+                }
+            },
+            "additionalProperties": false
+        }
+    }
+}
