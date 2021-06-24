@@ -24,4 +24,4 @@ Use an editor to load schema and start your work.
 
 Example Usage: 
 
-![til](./demo/creat_new_target.gif)
+<img src="./demo/creat_new_target.gif" width="500">
