@@ -1,5 +1,5 @@
 {
-    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$schema": "http://json-schema.org/schema",
     "title": "Huorong HIPS Rule Schema",
     "description": "This is the schema for Huorong Internet Security Custom HIPS Rule",
     "type": "object",
