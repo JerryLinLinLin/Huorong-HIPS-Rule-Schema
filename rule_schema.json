@@ -7,12 +7,14 @@
         "ver": {
             "type": "string",
             "description": "must be '5.0'",
-            "const": "5.0"
+            "const": "5.0",
+            "default": "5.0"
         },
         "tag": {
             "type": "string",
             "description": "must be 'hipsuser'",
-            "const": "hipsuser"
+            "const": "hipsuser",
+            "default": "hipsuser"
         },
         "data": {
             "type": "array",
