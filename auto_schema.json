@@ -1,5 +1,5 @@
 {
-    "$schema": "http://json-schema.org/schema",
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
     "title": "Huorong HIPS Verdict Cache Schema",
     "description": "This is the schema for Huorong Internet Security HIPS Verdict Cache",
     "type": "object",
